@@ -1,0 +1,39 @@
+name: Daily Picks Update
+
+on:
+  schedule:
+    - cron: "0 13 * * *"  # 9:00 AM EST
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update Picks JSON
+        run: |
+          TODAY=$(date +%F)
+          cat > picks_today.json <<EOL
+{
+  "date": "$TODAY",
+  "games": [
+    {
+      "matchup": "Yankees vs Red Sox",
+      "pick": "Yankees ML",
+      "edge": 0.12,
+      "reason": "Better bullpen xFIP and stronger wRC+ vs RHP"
+    },
+    {
+      "matchup": "Dodgers vs Giants",
+      "pick": "Dodgers ML",
+      "edge": 0.15,
+      "reason": "Superior hitting metrics vs LHP"
+    }
+  ]
+}
+EOL
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add picks_today.json
+          git commit -m "Auto-update picks for $TODAY"
+          git push
