@@ -1,0 +1,17 @@
+{
+  "date": "2025-10-02",
+  "games": [
+    {
+      "matchup": "Yankees vs Red Sox",
+      "pick": "Yankees ML",
+      "edge": 0.12,
+      "reason": "Better bullpen xFIP and stronger wRC+ vs RHP"
+    },
+    {
+      "matchup": "Dodgers vs Giants",
+      "pick": "Dodgers ML",
+      "edge": 0.15,
+      "reason": "Superior hitting metrics vs LHP"
+    }
+  ]
+}
